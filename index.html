@@ -569,20 +569,21 @@
             margin: 0 auto;
         }
         
-        /* Blog Section */
-        .blog-grid {
+        /* Blog & Articles Section */
+        .blog-articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
         
-        .blog-card {
+        .blog-article-card {
             background-color: white;
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--card-shadow);
             transition: var(--transition);
+            height: 100%;
             animation: blogReveal 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
         }
         
@@ -597,30 +598,31 @@
             }
         }
         
-        .blog-card:nth-child(2) { animation-delay: 0.1s; }
-        .blog-card:nth-child(3) { animation-delay: 0.2s; }
-        .blog-card:nth-child(4) { animation-delay: 0.3s; }
-        .blog-card:nth-child(5) { animation-delay: 0.4s; }
-        .blog-card:nth-child(6) { animation-delay: 0.5s; }
+        .blog-article-card:nth-child(2) { animation-delay: 0.1s; }
+        .blog-article-card:nth-child(3) { animation-delay: 0.2s; }
+        .blog-article-card:nth-child(4) { animation-delay: 0.3s; }
+        .blog-article-card:nth-child(5) { animation-delay: 0.4s; }
+        .blog-article-card:nth-child(6) { animation-delay: 0.5s; }
         
-        .blog-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .blog-article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
         
-        .blog-image {
+        .blog-article-image {
             height: 200px;
-            background-color: var(--light-gray);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: var(--gray-color);
-            font-size: 2.5rem;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
             position: relative;
             overflow: hidden;
         }
         
-        .blog-image::before {
+        .blog-article-image::before {
             content: '';
             position: absolute;
             top: 0;
@@ -632,15 +634,15 @@
             transition: opacity 0.5s ease;
         }
         
-        .blog-card:hover .blog-image::before {
+        .blog-article-card:hover .blog-article-image::before {
             opacity: 0.8;
         }
         
-        .blog-content {
-            padding: 1.5rem;
+        .blog-article-content {
+            padding: 1.8rem;
         }
         
-        .blog-meta {
+        .blog-article-meta {
             display: flex;
             gap: 1rem;
             margin-bottom: 0.8rem;
@@ -648,29 +650,29 @@
             color: var(--gray-color);
         }
         
-        .blog-tag {
-            background-color: #e0e7ff;
+        .blog-article-category {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.1);
             color: var(--primary-color);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
             font-size: 0.8rem;
-            animation: tagPulse 2s infinite;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
         
-        @keyframes tagPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .blog-article-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            font-weight: 700;
+            line-height: 1.4;
         }
         
-        .blog-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .blog-card p {
+        .blog-article-excerpt {
             color: var(--gray-color);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
         
         .read-more {
@@ -1198,7 +1200,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* NEW: Article Modal Styles from first file */
+        /* NEW: Article Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -1242,68 +1244,6 @@
         .close-modal:hover {
             color: var(--dark-color);
         }
-
-        /* NEW: Articles Grid Styles */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .article-card {
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            height: 100%;
-        }
-
-        .article-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .article-image {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .article-content {
-            padding: 1.8rem;
-        }
-
-        .article-category {
-            display: inline-block;
-            background: rgba(79, 70, 229, 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .article-title {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .article-excerpt {
-            color: var(--gray-color);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
         
         /* Toast Notification */
         .toast {
@@ -1327,8 +1267,12 @@
             to { transform: translateX(0); opacity: 1; }
         }
         
-        /* Responsive Styles */
-        @media (max-width: 992px) {
+        /* Mobile Responsive Styles */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 30px;
+            }
+            
             .hero h1 {
                 font-size: 2.8rem;
             }
@@ -1336,21 +1280,34 @@
             .section {
                 padding: 4rem 0;
             }
-            
+        }
+        
+        @media (max-width: 992px) {
             .content-with-sidebar {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
             .sidebar {
                 width: 100%;
+                margin-top: 2rem;
             }
             
             .nav-links {
                 gap: 1rem;
             }
             
-            .articles-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            .blog-articles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                max-width: 90%;
             }
         }
         
@@ -1369,6 +1326,7 @@
                 opacity: 0;
                 transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                z-index: 999;
             }
             
             .nav-links.active {
@@ -1378,41 +1336,135 @@
             
             .mobile-menu-btn {
                 display: block;
+                z-index: 1000;
+            }
+            
+            .hero {
+                padding: 4rem 1rem;
             }
             
             .hero h1 {
-                font-size: 2.3rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
             }
             
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                margin: 0.3rem;
             }
             
             .section-title h2 {
                 font-size: 2rem;
             }
             
+            .section-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
             .seo-page {
                 padding: 2rem;
+            }
+            
+            .seo-page h1 {
+                font-size: 2rem;
+            }
+            
+            .seo-page h2 {
+                font-size: 1.5rem;
             }
             
             .modal-content {
                 padding: 2rem 1.5rem;
                 margin: 1rem auto;
+                width: 95%;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .images-grid, .blog-articles-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .category-card {
+                height: 180px;
+                padding: 1.5rem;
+            }
+            
+            .category-icon {
+                font-size: 2.5rem;
+            }
+            
+            .category-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .image-placeholder {
+                height: 180px;
+            }
+            
+            .image-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .blog-article-image {
+                height: 180px;
+            }
+            
+            .blog-article-title {
+                font-size: 1.2rem;
+            }
+            
+            .blog-article-excerpt {
+                font-size: 0.9rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .ad-placeholder.sidebar {
+                height: 300px;
+                width: 100%;
+            }
+            
+            .cta-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                justify-content: center;
             }
         }
         
         @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
             .hero {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
             
             .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .btn {
-                padding: 0.8rem 1.5rem;
+                font-size: 1.8rem;
             }
             
             .section {
@@ -1420,11 +1472,15 @@
             }
             
             .section-title h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
-            .categories-grid, .images-grid, .blog-grid, .articles-grid {
+            .categories-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .category-card {
+                height: 160px;
             }
             
             .seo-page {
@@ -1432,18 +1488,222 @@
             }
             
             .seo-page h1 {
+                font-size: 1.8rem;
+            }
+            
+            .seo-page h2 {
+                font-size: 1.3rem;
+            }
+            
+            .seo-page p, .seo-page li {
+                font-size: 0.95rem;
+            }
+            
+            .breadcrumb ul {
+                font-size: 0.9rem;
+            }
+            
+            .faq-question {
+                padding: 1.2rem;
+                font-size: 0.95rem;
+            }
+            
+            .faq-answer {
+                font-size: 0.9rem;
+            }
+            
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.7rem 1.5rem;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+                margin: 0.5rem auto;
+                width: 98%;
+            }
+            
+            .modal-content h1 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .modal-content h3 {
+                font-size: 1.1rem;
+            }
+            
+            .toast {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .footer-bottom {
+                font-size: 0.8rem;
+            }
+            
+            .footer-bottom p {
+                line-height: 1.5;
+            }
+            
+            .ad-placeholder.large {
+                height: 70px;
+            }
+            
+            .adsense-unit {
+                padding: 1.5rem;
+            }
+            
+            .blog-article-meta {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .blog-article-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.4rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                padding: 1.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            .category-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .category-icon {
                 font-size: 2rem;
             }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .image-card h3 {
+                font-size: 1rem;
             }
             
-            .download-btn, .share-btn {
-                width: 100%;
+            .image-card p {
+                font-size: 0.85rem;
+            }
+            
+            .blog-article-title {
+                font-size: 1.1rem;
+            }
+            
+            .blog-article-excerpt {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Tablet Landscape Optimization */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .images-grid, .blog-articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .content-with-sidebar {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* High-resolution mobile devices */
+        @media (min-width: 576px) and (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .images-grid, .blog-articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Ensure images don't overflow on mobile */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Fix for iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+        
+        /* Improve tap targets on mobile */
+        @media (max-width: 768px) {
+            .download-btn,
+            .btn,
+            .nav-links a,
+            .read-more,
+            .faq-question {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
                 justify-content: center;
             }
+            
+            .mobile-menu-btn {
+                min-height: 44px;
+                min-width: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+        /* Prevent horizontal scrolling */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -1490,13 +1750,9 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#categories">Categories</a></li>
-                <li><a href="#articles">SEO Articles</a></li>
+                <li><a href="#blog-articles">Blog & Articles</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#privacy">Privacy</a></li>
-                <li><a href="#terms">Terms</a></li>
-                <li><a href="#disclaimer">Disclaimer</a></li>
-                <li><a href="#sitemap">Sitemap</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
         </div>
@@ -1507,9 +1763,9 @@
         <div class="container">
             <h1>Beautiful Wishes Images for Every Moment</h1>
             <p>Download and share beautiful wishes images for good morning, birthdays, festivals, love quotes and daily greetings. Free & optimized for WhatsApp, Facebook, Instagram.</p>
-            <div>
+            <div class="cta-buttons">
                 <a href="#categories" class="btn">Explore Categories</a>
-                <a href="#articles" class="btn btn-outline">SEO Articles</a>
+                <a href="#blog-articles" class="btn btn-outline">Blog & Articles</a>
             </div>
         </div>
     </section>
@@ -1698,223 +1954,30 @@
         </div>
     </section>
 
-    <!-- NEW: SEO ARTICLES SECTION -->
-    <section class="section" id="articles">
+    <!-- NEW: Blog & Articles Section (Merged) -->
+    <section class="section" id="blog-articles">
         <div class="container">
             <div class="section-title">
-                <h2>SEO Articles & Guides</h2>
+                <h2>Blog & Articles</h2>
             </div>
-            <p class="section-subtitle">Read our expert guides on creating, selecting, and sharing the perfect wishes images for every occasion.</p>
+            <p class="section-subtitle">Read our latest blog posts and expert articles on creating, selecting, and sharing the perfect wishes images for every occasion.</p>
             
-            <div class="articles-grid" id="articles-grid">
-                <!-- Articles will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section with Sidebar -->
-    <section class="section" id="blog">
-        <div class="container">
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li>Blog</li>
-                </ul>
-            </div>
-            
-            <div class="content-with-sidebar">
-                <div class="main-content">
-                    <div class="section-title">
-                        <h2>Latest Blog Posts</h2>
-                    </div>
-                    <p class="section-subtitle">Read our latest articles on how to create beautiful wishes, trending greeting styles, and tips for sharing images on social media.</p>
-                    
-                    <div class="blog-grid">
-                        <div class="blog-card">
-                            <div class="blog-image">
-                                <i class="fas fa-pencil-alt"></i>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <span class="blog-tag">Tips</span>
-                                    <span><i class="far fa-calendar"></i> May 15, 2026</span>
-                                    <span><i class="far fa-clock"></i> 5 min read</span>
-                                </div>
-                                <h3>How to Create Beautiful Wishes Images in 2026</h3>
-                                <p>Learn the latest design trends and tools to create stunning wishes images that stand out on social media.</p>
-                                <a href="#blog-post-1" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="blog-card">
-                            <div class="blog-image">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <span class="blog-tag">Social Media</span>
-                                    <span><i class="far fa-calendar"></i> May 10, 2026</span>
-                                    <span><i class="far fa-clock"></i> 4 min read</span>
-                                </div>
-                                <h3>Best Practices for Sharing Wishes on WhatsApp</h3>
-                                <p>Optimize your wishes images for WhatsApp to ensure they look perfect when shared.</p>
-                                <a href="#blog-post-2" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="blog-card">
-                            <div class="blog-image">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <span class="blog-tag">Trends</span>
-                                    <span><i class="far fa-calendar"></i> May 5, 2026</span>
-                                    <span><i class="far fa-clock"></i> 6 min read</span>
-                                </div>
-                                <h3>Top 10 Wishes Image Trends for 2026</h3>
-                                <p>Discover the most popular wishes image styles and themes that are trending this year.</p>
-                                <a href="#blog-post-3" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Sidebar -->
-                <div class="sidebar">
-                    <!-- AdSense Sidebar Ad -->
-                    <div class="adsense-unit">
-                        <div class="adsense-label">Advertisement</div>
-                        <div class="ad-placeholder sidebar">
-                            <i class="fas fa-ad"></i>
-                            <p>AdSense Sidebar (300x600)</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Popular Posts Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Popular Posts</h3>
-                        <ul class="sidebar-links">
-                            <li><a href="#blog-post-1">How to Create Beautiful Wishes Images</a></li>
-                            <li><a href="#blog-post-2">Best Practices for Sharing on WhatsApp</a></li>
-                            <li><a href="#blog-post-3">Top 10 Wishes Image Trends for 2026</a></li>
-                            <li><a href="#blog-post-4">Romantic Wishes Images Guide</a></li>
-                            <li><a href="#blog-post-5">Create Your Own Wishes from Photos</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Newsletter Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Newsletter</h3>
-                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Subscribe to get weekly updates on new wishes images and design tips.</p>
-                        <form id="newsletterForm" style="display: flex; flex-direction: column; gap: 10px;">
-                            <input type="email" placeholder="Your email address" required style="padding: 0.8rem; border: 1px solid var(--light-gray); border-radius: 6px;">
-                            <button type="submit" class="btn" style="padding: 0.8rem; font-size: 0.9rem; margin: 0;">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
+            <div class="blog-articles-grid" id="blog-articles-grid">
+                <!-- Blog and articles will be populated by JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Terms of Service Page -->
-    <section class="section seo-page" id="terms">
-        <div class="container">
-            <h1>Terms of Service</h1>
-            <p><strong>Last Updated:</strong> May 15, 2026</p>
-            
-            <p>Welcome to WishaImage. By accessing or using our website, you agree to be bound by these Terms of Service. Please read them carefully.</p>
-            
-            <h2>1. Acceptance of Terms</h2>
-            <p>By accessing and using WishaImage, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use this site.</p>
-            
-            <h2>2. Description of Service</h2>
-            <p>WishaImage provides users with access to a collection of digital wishes images for personal, non-commercial use. The service may include, but is not limited to, image downloads, blog content, and related features.</p>
-            
-            <h2>3. User Obligations</h2>
-            <p>As a user of this website, you agree to:</p>
-            <ul>
-                <li>Use the service only for lawful purposes</li>
-                <li>Not reproduce, duplicate, copy, sell, or exploit any portion of the service without express written permission</li>
-                <li>Not use the service in any way that could damage, disable, overburden, or impair the website</li>
-                <li>Not attempt to gain unauthorized access to any part of the service</li>
-            </ul>
-            
-            <h2>4. Intellectual Property Rights</h2>
-            <p>All images, text, graphics, logos, and other content on WishaImage are the property of WishaImage or its content suppliers and are protected by international copyright laws. The compilation of all content on this site is the exclusive property of WishaImage.</p>
-            
-            <h2>5. License to Use Images</h2>
-            <p>WishaImage grants you a personal, non-exclusive, non-transferable, limited license to download and use the images for personal, non-commercial purposes only. This license does not include:</p>
-            <ul>
-                <li>Resale or commercial use of the images</li>
-                <li>Distribution of the images as part of any product or service</li>
-                <li>Use of the images in any way that could be considered defamatory, obscene, or illegal</li>
-            </ul>
-            
-            <h2>6. User-Generated Content</h2>
-            <p>Users may submit comments, feedback, or other content. By submitting content, you grant WishaImage a perpetual, royalty-free, worldwide license to use, modify, and display such content.</p>
-            
-            <h2>7. Disclaimer of Warranties</h2>
-            <p>The service is provided on an "as is" and "as available" basis. WishaImage makes no representations or warranties of any kind, express or implied, as to the operation of the service or the information, content, or materials included.</p>
-            
-            <h2>8. Limitation of Liability</h2>
-            <p>WishaImage shall not be liable for any damages of any kind arising from the use of this service, including, but not limited to, direct, indirect, incidental, punitive, and consequential damages.</p>
-            
-            <h2>9. Changes to Terms</h2>
-            <p>We reserve the right to modify these terms at any time. We will notify users of any changes by posting the new Terms of Service on this page. Your continued use of the service after any changes constitutes acceptance of those changes.</p>
-            
-            <h2>10. Governing Law</h2>
-            <p>These Terms shall be governed and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.</p>
-            
-            <h2>11. Contact Information</h2>
-            <p>If you have any questions about these Terms of Service, please contact us at:</p>
-            <p><strong>Email:</strong> legal@wishaimage.com</p>
-            <p><strong>Address:</strong> WishaImage Legal Department, 123 Creativity Lane, Digital City, DC 10001, United States</p>
+    <!-- AdSense Unit (After Blog) -->
+    <div class="container">
+        <div class="adsense-unit fade-in">
+            <div class="adsense-label">Advertisement</div>
+            <div class="ad-placeholder large">
+                <i class="fas fa-ad"></i>
+                <p>AdSense Banner (728x90)</p>
+            </div>
         </div>
-    </section>
-
-    <!-- Disclaimer Page -->
-    <section class="section seo-page" id="disclaimer">
-        <div class="container">
-            <h1>Disclaimer</h1>
-            <p><strong>Last Updated:</strong> May 15, 2026</p>
-            
-            <h2>1. General Information</h2>
-            <p>The information contained on WishaImage is for general information purposes only. While we strive to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.</p>
-            
-            <h2>2. Professional Advice</h2>
-            <p>The content on WishaImage is not intended to be a substitute for professional advice. All content, including images, text, and other materials, are provided for entertainment and personal use only. You should not rely on this information as a substitute for, nor does it replace, professional advice.</p>
-            
-            <h2>3. External Links</h2>
-            <p>Our website may contain links to external websites that are not provided or maintained by or in any way affiliated with WishaImage. Please note that we do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.</p>
-            
-            <h2>4. Image Usage and Rights</h2>
-            <p>All images on WishaImage are either created by our team, obtained from royalty-free sources, or used under appropriate licenses. We make every effort to ensure we have the proper rights to use and distribute these images. However, if you believe that any content infringes upon your copyright, please contact us immediately.</p>
-            
-            <h2>5. Fair Use Disclaimer</h2>
-            <p>WishaImage may contain copyrighted material the use of which has not always been specifically authorized by the copyright owner. We believe this constitutes a "fair use" of any such copyrighted material as provided for in section 107 of the US Copyright Law.</p>
-            
-            <h2>6. No Endorsement</h2>
-            <p>Reference to any specific commercial product, process, or service by trade name, trademark, manufacturer, or otherwise does not constitute or imply endorsement, recommendation, or favoring by WishaImage.</p>
-            
-            <h2>7. Testimonials Disclaimer</h2>
-            <p>Testimonials appearing on this website are received via text, audio, or video submission. They are individual experiences, reflecting real-life experiences of those who have used our services. However, they are individual results and results may vary. We do not claim that they are typical results.</p>
-            
-            <h2>8. Views Expressed Disclaimer</h2>
-            <p>The views and opinions expressed on this website are those of the authors and do not necessarily reflect the official policy or position of any other agency, organization, employer, or company.</p>
-            
-            <h2>9. Errors and Omissions</h2>
-            <p>We strive to keep the information on our website accurate and up-to-date. However, we cannot guarantee that all information is completely accurate, comprehensive, or current at all times. We assume no responsibility for errors or omissions in the contents of the service.</p>
-            
-            <h2>10. Use at Your Own Risk</h2>
-            <p>All information on this site is provided "as is", with no guarantee of completeness, accuracy, timeliness, or of the results obtained from the use of this information, and without warranty of any kind, express or implied, including, but not limited to warranties of performance, merchantability, and fitness for a particular purpose.</p>
-            
-            <h2>11. Contact Information</h2>
-            <p>If you have any questions about this Disclaimer, please contact us at:</p>
-            <p><strong>Email:</strong> legal@wishaimage.com</p>
-            <p><strong>Address:</strong> WishaImage Legal Department, 123 Creativity Lane, Digital City, DC 10001, United States</p>
-        </div>
-    </section>
+    </div>
 
     <!-- About Page -->
     <section class="section seo-page" id="about">
@@ -1938,36 +2001,6 @@
             <p>We are committed to providing 100% free, high-resolution images that are optimized for all social media platforms. Our team of designers works tirelessly to create new content daily, ensuring our collection stays fresh and relevant.</p>
             
             <p>All images are available for personal use and can be shared freely on WhatsApp, Facebook, Instagram, Twitter, and other social platforms. We believe in spreading positivity and happiness through beautiful visual content.</p>
-        </div>
-    </section>
-
-    <!-- Contact Page -->
-    <section class="section seo-page" id="contact">
-        <div class="container">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you! Whether you have suggestions for new image categories, feedback on our website, or partnership inquiries, please don't hesitate to reach out.</p>
-            
-            <h2>Get In Touch</h2>
-            <p>For general inquiries, suggestions, or feedback:</p>
-            <p><strong>Email:</strong> contact@wishaimage.com</p>
-            <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM (EST)</p>
-            
-            <h2>Content Submissions</h2>
-            <p>Are you a designer or photographer interested in contributing to WishaImage? We're always looking for talented creators to expand our collection.</p>
-            <p><strong>Email:</strong> submissions@wishaimage.com</p>
-            
-            <h2>Press & Media</h2>
-            <p>For media inquiries, interviews, or press-related questions:</p>
-            <p><strong>Email:</strong> press@wishaimage.com</p>
-            
-            <h2>Follow Us</h2>
-            <p>Stay updated with our latest images and announcements by following us on social media:</p>
-            <div class="social-icons" style="justify-content: flex-start; margin-top: 1rem;">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-pinterest-p"></i></a>
-            </div>
         </div>
     </section>
 
@@ -2032,6 +2065,36 @@
         </div>
     </section>
 
+    <!-- Contact Page -->
+    <section class="section seo-page" id="contact">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! Whether you have suggestions for new image categories, feedback on our website, or partnership inquiries, please don't hesitate to reach out.</p>
+            
+            <h2>Get In Touch</h2>
+            <p>For general inquiries, suggestions, or feedback:</p>
+            <p><strong>Email:</strong> contact@wishaimage.com</p>
+            <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM (EST)</p>
+            
+            <h2>Content Submissions</h2>
+            <p>Are you a designer or photographer interested in contributing to WishaImage? We're always looking for talented creators to expand our collection.</p>
+            <p><strong>Email:</strong> submissions@wishaimage.com</p>
+            
+            <h2>Press & Media</h2>
+            <p>For media inquiries, interviews, or press-related questions:</p>
+            <p><strong>Email:</strong> press@wishaimage.com</p>
+            
+            <h2>Follow Us</h2>
+            <p>Stay updated with our latest images and announcements by following us on social media:</p>
+            <div class="social-icons" style="justify-content: flex-start; margin-top: 1rem;">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -2054,7 +2117,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#categories">Categories</a></li>
-                        <li><a href="#articles">SEO Articles</a></li>
+                        <li><a href="#blog-articles">Blog & Articles</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -2101,154 +2164,497 @@
 
     <!-- JavaScript -->
     <script>
-        // Sample SEO articles data from first file
-        const articlesData = [
+        // Combined Blog Posts and Articles Data
+        const blogArticlesData = [
+            // Blog Posts
             {
                 id: 1,
-                title: "How to Choose the Perfect Birthday Wish Image",
-                excerpt: "Learn the art of selecting birthday wishes that truly resonate with the recipient's personality and your relationship with them.",
-                category: "Birthday",
-                fullContent: `<h2>How to Choose the Perfect Birthday Wish Image</h2>
-                <p>Choosing the right birthday wish image can make all the difference in how your message is received. Here are some expert tips:</p>
-                <h3>1. Consider the Recipient's Personality</h3>
-                <p>Is the birthday person fun-loving and humorous, or more sentimental and traditional? Select an image style that matches their personality. For humorous friends, look for funny cartoon designs. For family members, choose elegant, heartfelt designs.</p>
-                <h3>2. Match the Color Scheme</h3>
-                <p>Colors evoke emotions. Bright colors like yellow and orange convey happiness and energy, while blues and purples suggest elegance and sophistication. Consider what feeling you want to convey.</p>
-                <h3>3. Quality Matters</h3>
-                <p>Always choose high-resolution images that won't appear pixelated when shared. WishGallery offers all images in high quality for both digital sharing and printing.</p>
-                <h3>4. Personalization Options</h3>
-                <p>Some images allow for text customization. Consider whether you want to add a personal message directly on the image or keep it clean for your own message below.</p>
-                <p>By following these simple guidelines, you can ensure your birthday wish makes the perfect impact!</p>`
+                title: "How to Create Beautiful Wishes Images in 2026",
+                excerpt: "Learn the latest design trends and tools to create stunning wishes images that stand out on social media.",
+                category: "Design Tips",
+                type: "blog",
+                date: "May 15, 2026",
+                readTime: "5 min read",
+                fullContent: `<h2>How to Create Beautiful Wishes Images in 2026</h2>
+                <p>Creating beautiful wishes images has never been easier with today's design tools and trends. Here's a comprehensive guide to help you create stunning images that will make your greetings stand out.</p>
+                
+                <h3>1. Choose the Right Design Tools</h3>
+                <p>In 2026, several user-friendly design tools can help you create professional-looking wishes images:</p>
+                <ul>
+                    <li><strong>Canva:</strong> Perfect for beginners with thousands of templates</li>
+                    <li><strong>Adobe Express:</strong> Professional tools with AI-powered features</li>
+                    <li><strong>Figma:</strong> Great for collaborative design projects</li>
+                    <li><strong>PicsArt:</strong> Mobile-friendly with powerful editing features</li>
+                </ul>
+                
+                <h3>2. Follow Current Design Trends</h3>
+                <p>Stay updated with these 2026 design trends:</p>
+                <ul>
+                    <li><strong>Minimalist Designs:</strong> Clean, simple layouts with plenty of white space</li>
+                    <li><strong>Gradient Colors:</strong> Smooth color transitions that add depth</li>
+                    <li><strong>3D Elements:</strong> Subtle 3D effects for visual interest</li>
+                    <li><strong>Hand-drawn Elements:</strong> Personal, authentic touches</li>
+                    <li><strong>Neon and Glow Effects:</strong> For eye-catching evening wishes</li>
+                </ul>
+                
+                <h3>3. Optimize for Different Platforms</h3>
+                <p>Each social platform has ideal dimensions:</p>
+                <ul>
+                    <li><strong>Instagram:</strong> 1080x1080px for posts, 1080x1920px for stories</li>
+                    <li><strong>Facebook:</strong> 1200x630px for posts, 1080x1080px for profile</li>
+                    <li><strong>WhatsApp:</strong> 800x800px minimum for clear display</li>
+                    <li><strong>Twitter:</strong> 1200x675px for optimal engagement</li>
+                </ul>
+                
+                <h3>4. Add Personal Touches</h3>
+                <p>Personalization makes your wishes more meaningful:</p>
+                <ul>
+                    <li>Include the recipient's name</li>
+                    <li>Use their favorite colors</li>
+                    <li>Reference shared memories or inside jokes</li>
+                    <li>Choose images that match their personality</li>
+                </ul>
+                
+                <p>By following these guidelines, you can create wishes images that are not only beautiful but also perfectly tailored to your recipients and the platforms where you'll share them.</p>`
             },
             {
                 id: 2,
-                title: "The Psychology Behind Effective Wedding Wishes",
-                excerpt: "Discover what makes wedding wishes memorable and how to craft messages that newlyweds will cherish forever.",
-                category: "Wedding",
-                fullContent: `<h2>The Psychology Behind Effective Wedding Wishes</h2>
-                <p>Wedding wishes carry emotional weight and can become keepsakes for couples. Understanding the psychology behind them helps create more meaningful messages.</p>
-                <h3>1. The Power of Personalization</h3>
-                <p>Generic messages are easily forgotten. Reference specific qualities of the couple, how they met, or shared memories to make your wish stand out.</p>
-                <h3>2. Balance Tradition with Authenticity</h3>
-                <p>While traditional blessings are appreciated, adding your authentic voice creates a more memorable message. Combine classic well-wishes with personal observations.</p>
-                <h3>3. Visual Elements Matter</h3>
-                <p>The image you choose should complement your message. Romantic floral designs work well for heartfelt messages, while elegant minimalist designs suit sophisticated wishes.</p>
-                <h3>4. Future-Oriented Language</h3>
-                <p>Research shows that wishes focusing on the future ("May your life together be...") are more appreciated than those focusing only on the present day.</p>
-                <p>By applying these psychological principles, your wedding wishes will resonate more deeply and be remembered for years to come.</p>`
+                title: "Best Practices for Sharing Wishes on WhatsApp",
+                excerpt: "Optimize your wishes images for WhatsApp to ensure they look perfect when shared with friends and family.",
+                category: "Social Media",
+                type: "blog",
+                date: "May 10, 2026",
+                readTime: "4 min read",
+                fullContent: `<h2>Best Practices for Sharing Wishes on WhatsApp</h2>
+                <p>WhatsApp is the most popular messaging platform for sharing wishes images. Follow these best practices to ensure your images look perfect every time.</p>
+                
+                <h3>1. Optimal Image Dimensions</h3>
+                <p>For crystal-clear display on WhatsApp:</p>
+                <ul>
+                    <li><strong>Standard Images:</strong> 800x800px to 1600x1600px</li>
+                    <li><strong>Story Images:</strong> 1080x1920px (9:16 ratio)</li>
+                    <li><strong>Status Images:</strong> 1080x1920px for full-screen display</li>
+                    <li><strong>Group Sharing:</strong> 1200x1200px for better visibility</li>
+                </ul>
+                
+                <h3>2. File Size Considerations</h3>
+                <p>Balance quality with file size:</p>
+                <ul>
+                    <li><strong>Compressed Size:</strong> Under 1MB for quick sending</li>
+                    <li><strong>High Quality:</strong> 1-5MB for important occasions</li>
+                    <li><strong>Format:</strong> JPEG for photos, PNG for text-heavy images</li>
+                    <li><strong>Compression:</strong> Use 80-90% quality to reduce size</li>
+                </ul>
+                
+                <h3>3. Text Placement Strategy</h3>
+                <p>Ensure text remains readable:</p>
+                <ul>
+                    <li>Keep important text in the center third of the image</li>
+                    <li>Use high contrast between text and background</li>
+                    <li>Avoid placing text near edges (may get cut off)</li>
+                    <li>Use minimum 24px font size for readability</li>
+                </ul>
+                
+                <h3>4. Timing Your Wishes</h3>
+                <p>Maximize impact with perfect timing:</p>
+                <ul>
+                    <li><strong>Morning Wishes:</strong> Send between 7-9 AM</li>
+                    <li><strong>Birthday Wishes:</strong> Send at midnight or early morning</li>
+                    <li><strong>Festival Wishes:</strong> Send on the eve or early morning</li>
+                    <li><strong>Thank You Wishes:</strong> Send immediately after the event</li>
+                </ul>
+                
+                <h3>5. Personalization Tips</h3>
+                <p>Make your wishes stand out:</p>
+                <ul>
+                    <li>Address recipients by name in the message</li>
+                    <li>Reference recent events in their life</li>
+                    <li>Use inside jokes or shared memories</li>
+                    <li>Add voice messages alongside images</li>
+                </ul>
+                
+                <p>By following these WhatsApp-specific guidelines, you'll ensure your wishes images always look their best and make the maximum impact on your recipients.</p>`
             },
             {
                 id: 3,
-                title: "Festival Wishes: Cultural Sensitivity and Appropriateness",
-                excerpt: "A guide to selecting festival wishes that respect cultural traditions while conveying your heartfelt greetings.",
-                category: "Festival",
-                fullContent: `<h2>Festival Wishes: Cultural Sensitivity and Appropriateness</h2>
-                <p>When sending festival wishes, especially for cultural or religious celebrations you may not personally observe, sensitivity and appropriateness are key.</p>
-                <h3>1. Research the Festival</h3>
-                <p>Before selecting an image, understand the festival's significance. For example, Diwali celebrates the victory of light over darkness, so images with lamps and lights are appropriate.</p>
-                <h3>2. Avoid Stereotypes</h3>
-                <p>Choose images that represent the festival authentically rather than relying on stereotypes. Look for designs created by artists from that culture when possible.</p>
-                <h3>3. Appropriate Color Schemes</h3>
-                <p>Different festivals have traditional color associations. For example, red and gold are auspicious for Chinese New Year, while pastels are common for Easter.</p>
-                <h3>4. Inclusive Language</h3>
-                <p>Use inclusive language that focuses on universal values like joy, peace, and togetherness, which are celebrated across all cultures during festivals.</p>
-                <p>By being culturally sensitive, your festival wishes will be more meaningful and respectful to recipients of all backgrounds.</p>`
+                title: "Top 10 Wishes Image Trends for 2026",
+                excerpt: "Discover the most popular wishes image styles and themes that are trending this year.",
+                category: "Trends",
+                type: "blog",
+                date: "May 5, 2026",
+                readTime: "6 min read",
+                fullContent: `<h2>Top 10 Wishes Image Trends for 2026</h2>
+                <p>Stay ahead of the curve with these trending wishes image styles that are dominating social media in 2026.</p>
+                
+                <h3>1. AI-Generated Art</h3>
+                <p>Artificial intelligence is transforming wishes images:</p>
+                <ul>
+                    <li>Unique, never-before-seen designs</li>
+                    <li>Personalized based on recipient's interests</li>
+                    <li>Faster creation process</li>
+                    <li>Endless style variations</li>
+                </ul>
+                
+                <h3>2. Augmented Reality (AR) Elements</h3>
+                <p>Interactive wishes are gaining popularity:</p>
+                <ul>
+                    <li>3D animations that come to life</li>
+                    <li>Interactive elements users can engage with</li>
+                    <li>AR filters for personalized experiences</li>
+                    <li>Virtual greeting cards</li>
+                </ul>
+                
+                <h3>3. Sustainable and Eco-Friendly Designs</h3>
+                <p>Green consciousness influences design:</p>
+                <ul>
+                    <li>Nature-inspired color palettes</li>
+                    <li>Eco-friendly messaging</li>
+                    <li>Minimalist designs using less "digital ink"</li>
+                    <li>Plant and wildlife themes</li>
+                </ul>
+                
+                <h3>4. Retro and Vintage Revival</h3>
+                <p>Nostalgic designs make a comeback:</p>
+                <ul>
+                    <li>80s and 90s color schemes</li>
+                    <li>Pixel art and retro fonts</li>
+                    <li>Vintage photography effects</li>
+                    <li>Classic greeting card styles</li>
+                </ul>
+                
+                <h3>5. Micro-Animation</h3>
+                <p>Subtle movement adds life to images:</p>
+                <ul>
+                    <li>Fluttering butterflies or falling leaves</li>
+                    <li>Gentle text animations</li>
+                    <li>Subtty glowing effects</li>
+                    <li>Breathing animations for calm wishes</li>
+                </ul>
+                
+                <h3>6. Personalized Avatars</h3>
+                <p>Custom characters for unique wishes:</p>
+                <ul>
+                    <li>Avatar-based birthday cards</li>
+                    <li>Custom character illustrations</li>
+                    <li>Family avatar groups</li>
+                    <li>Pet avatars for animal lovers</li>
+                </ul>
+                
+                <h3>7. Dark Mode Designs</h3>
+                <p>Optimized for modern device displays:</p>
+                <ul>
+                    <li>Dark background with bright text</li>
+                    <li>OLED-friendly pure black designs</li>
+                    <li>Reduced eye strain for evening wishes</li>
+                    <li>Modern, sophisticated look</li>
+                </ul>
+                
+                <h3>8. Cultural Fusion</h3>
+                <p>Blending traditions for global appeal:</p>
+                <ul>
+                    <li>Combining multiple cultural elements</li>
+                    <li>Multilingual wishes</li>
+                    <li>Global holiday celebrations</li>
+                    <li>Cross-cultural design patterns</li>
+                </ul>
+                
+                <h3>9. Sound-Integrated Images</h3>
+                <p>Multisensory greeting experiences:</p>
+                <ul>
+                    <li>Images with embedded audio messages</li>
+                    <li>Background music matching the theme</li>
+                    <li>Sound effects for interactive elements</li>
+                    <li>Voice-over wishes</li>
+                </ul>
+                
+                <h3>10. Accessible Design</h3>
+                <p>Inclusive wishes for everyone:</p>
+                <ul>
+                    <li>High contrast for visually impaired</li>
+                    <li>Alt text descriptions</li>
+                    <li>Simple layouts for cognitive accessibility</li>
+                    <li>Color-blind friendly palettes</li>
+                </ul>
+                
+                <p>These trends represent the cutting edge of wishes image design in 2026. By incorporating these elements, you can create wishes that feel fresh, modern, and deeply engaging.</p>`
             },
+            // SEO Articles
             {
                 id: 4,
-                title: "The Art of Anniversary Wishes: From 1st to 50th Year",
-                excerpt: "Learn how to tailor anniversary wishes for different milestones, from paper to golden anniversaries.",
-                category: "Anniversary",
-                fullContent: `<h2>The Art of Anniversary Wishes: From 1st to 50th Year</h2>
-                <p>Each anniversary milestone has its own significance and traditional gifts. Your wishes should reflect the appropriate tone for each milestone.</p>
-                <h3>1. Early Years (1st-5th)</h3>
-                <p>Focus on new beginnings, growth, and the adventure ahead. Images with fresh, vibrant colors work well for these youthful milestones.</p>
-                <h3>2. Middle Milestones (10th-25th)</h3>
-                <p>Celebrate established love, partnership, and shared memories. Silver (25th) anniversary wishes should reflect durability and value.</p>
-                <h3>3. Major Milestones (30th-50th+)</h3>
-                <p>Golden (50th) and diamond (60th) anniversaries call for images that reflect rarity, endurance, and timeless beauty. Elegant, classic designs are most appropriate.</p>
-                <h3>4. Personal Touches</h3>
-                <p>Reference the traditional gift materials (paper for 1st, wood for 5th, etc.) in your message or image choice to show thoughtfulness.</p>
-                <p>By tailoring your wishes to the specific anniversary, you show deeper consideration and create more meaningful connections with the celebrating couple.</p>`
+                title: "How to Choose the Perfect Birthday Wish Image",
+                excerpt: "Learn the art of selecting birthday wishes that truly resonate with the recipient's personality.",
+                category: "Birthday",
+                type: "article",
+                date: "April 28, 2026",
+                readTime: "5 min read",
+                fullContent: `<h2>How to Choose the Perfect Birthday Wish Image</h2>
+                <p>Choosing the right birthday wish image can make all the difference in how your message is received. Here are some expert tips for selecting the perfect image for any birthday celebration.</p>
+                
+                <h3>1. Consider the Recipient's Personality</h3>
+                <p>The most important factor is matching the image to the recipient:</p>
+                <ul>
+                    <li><strong>For humorous friends:</strong> Funny cartoons or meme-style images</li>
+                    <li><strong>For family members:</strong> Elegant, heartfelt designs with family themes</li>
+                    <li><strong>For colleagues:</strong> Professional yet warm designs</li>
+                    <li><strong>For children:</strong> Bright, colorful cartoon characters</li>
+                    <li><strong>For romantic partners:</strong> Intimate, loving designs with personal touches</li>
+                </ul>
+                
+                <h3>2. Age-Appropriate Selection</h3>
+                <p>Different ages call for different styles:</p>
+                <ul>
+                    <li><strong>Kids (1-12):</strong> Animated characters, bright colors, simple messages</li>
+                    <li><strong>Teens (13-19):</strong> Trendy designs, social media-friendly, cool fonts</li>
+                    <li><strong>Young Adults (20-35):</strong> Modern designs, motivational messages, stylish layouts</li>
+                    <li><strong>Middle Age (36-60):</strong> Elegant designs, meaningful quotes, sophisticated colors</li>
+                    <li><strong>Seniors (60+):</strong> Classic designs, larger text, traditional motifs</li>
+                </ul>
+                
+                <h3>3. Match the Color Scheme</h3>
+                <p>Colors evoke specific emotions:</p>
+                <ul>
+                    <li><strong>Red:</strong> Energy, love, excitement</li>
+                    <li><strong>Blue:</strong> Calm, trust, sophistication</li>
+                    <li><strong>Yellow:</strong> Happiness, optimism, warmth</li>
+                    <li><strong>Green:</strong> Growth, harmony, nature</li>
+                    <li><strong>Purple:</strong> Luxury, creativity, wisdom</li>
+                    <li><strong>Gold:</strong> Celebration, achievement, luxury</li>
+                </ul>
+                
+                <h3>4. Quality Matters</h3>
+                <p>Always choose high-quality images:</p>
+                <ul>
+                    <li>High resolution (minimum 800x800px)</li>
+                    <li>Clear, readable text</li>
+                    <li>Professional design elements</li>
+                    <li>Appropriate file format (JPEG for photos, PNG for text)</li>
+                </ul>
+                
+                <h3>5. Timing and Delivery</h3>
+                <p>When and how you send matters:</p>
+                <ul>
+                    <li>Send at midnight for maximum surprise</li>
+                    <li>Consider time zones for international friends</li>
+                    <li>Use the recipient's preferred platform</li>
+                    <li>Add a personal message along with the image</li>
+                </ul>
+                
+                <p>By following these guidelines, you can ensure your birthday wishes always hit the right note and create memorable moments for your loved ones.</p>`
             },
             {
                 id: 5,
-                title: "Digital vs. Printed: When to Use Each Format",
-                excerpt: "A practical guide to deciding whether digital sharing or physical printing is best for your occasion.",
-                category: "Tips",
-                fullContent: `<h2>Digital vs. Printed: When to Use Each Format</h2>
-                <p>In today's hybrid world, you have options for how to deliver your wishes. Here's when to choose digital or printed formats.</p>
-                <h3>1. Digital Wishes Are Best For:</h3>
+                title: "Festival Wishes: Cultural Sensitivity Guide",
+                excerpt: "A comprehensive guide to selecting festival wishes that respect cultural traditions.",
+                category: "Festival",
+                type: "article",
+                date: "April 22, 2026",
+                readTime: "6 min read",
+                fullContent: `<h2>Festival Wishes: Cultural Sensitivity Guide</h2>
+                <p>When sending festival wishes, especially for cultural or religious celebrations, sensitivity and appropriateness are key to showing respect and building connections.</p>
+                
+                <h3>1. Major Festivals and Appropriate Imagery</h3>
+                
+                <h4>Diwali (Festival of Lights)</h4>
                 <ul>
-                    <li>Last-minute greetings when time is limited</li>
-                    <li>International recipients to avoid shipping delays</li>
-                    <li>Social media sharing to celebrate publicly</li>
-                    <li>Environmental considerations (no paper waste)</li>
+                    <li><strong>Appropriate:</strong> Diyas (oil lamps), rangoli, fireworks, Lakshmi images</li>
+                    <li><strong>Colors:</strong> Gold, orange, yellow, red</li>
+                    <li><strong>Messages:</strong> "Happy Diwali", "Shubh Deepavali"</li>
+                    <li><strong>Avoid:</strong> Images with feet showing (considered disrespectful)</li>
                 </ul>
-                <h3>2. Printed Wishes Are Best For:</h3>
+                
+                <h4>Christmas</h4>
                 <ul>
-                    <li>Formal occasions like weddings and major anniversaries</li>
-                    <li>Older recipients who may appreciate physical keepsakes</li>
-                    <li>Including with physical gifts</li>
-                    <li>Creating lasting mementos for memory boxes</li>
+                    <li><strong>Appropriate:</strong> Christmas trees, stars, Santa, nativity scenes</li>
+                    <li><strong>Colors:</strong> Red, green, gold, white</li>
+                    <li><strong>Messages:</strong> "Merry Christmas", "Season's Greetings"</li>
+                    <li><strong>Note:</strong> Some prefer religious images, others secular</li>
                 </ul>
-                <h3>3. Hybrid Approach</h3>
-                <p>Consider both: send a digital preview followed by a printed version. This works well for important milestones where you want immediate and lasting impact.</p>
-                <h3>4. Quality Considerations</h3>
-                <p>WishGallery provides high-resolution images suitable for both digital sharing and professional printing. Always check the resolution requirements for your intended use.</p>
-                <p>By choosing the right format for each occasion, you maximize the impact of your thoughtful wishes.</p>`
+                
+                <h4>Eid</h4>
+                <ul>
+                    <li><strong>Appropriate:</strong> Crescent moon, stars, mosque silhouettes</li>
+                    <li><strong>Colors:</strong> Green, white, gold</li>
+                    <li><strong>Messages:</strong> "Eid Mubarak", "Blessed Eid"</li>
+                    <li><strong>Avoid:</strong> Images with faces (in conservative traditions)</li>
+                </ul>
+                
+                <h4>Chinese New Year</h4>
+                <ul>
+                    <li><strong>Appropriate:</strong> Red lanterns, dragons, money envelopes</li>
+                    <li><strong>Colors:</strong> Red, gold, yellow</li>
+                    <li><strong>Messages:</strong> "Happy New Year", "Gong Xi Fa Cai"</li>
+                    <li><strong>Note:</strong> Animal of the year changes annually</li>
+                </ul>
+                
+                <h3>2. Research Before Sending</h3>
+                <p>Essential steps for cultural sensitivity:</p>
+                <ul>
+                    <li>Learn about the festival's significance</li>
+                    <li>Understand appropriate greetings in local language</li>
+                    <li>Research color symbolism</li>
+                    <li>Know timing (some festivals last multiple days)</li>
+                    <li>Understand dietary restrictions if including in message</li>
+                </ul>
+                
+                <h3>3. Inclusive Language</h3>
+                <p>Use language that respects all traditions:</p>
+                <ul>
+                    <li>"Wishing you joy this festival season"</li>
+                    <li>"May your celebrations be filled with happiness"</li>
+                    <li>"Thinking of you during this special time"</li>
+                    <li>"Warm wishes for your celebrations"</li>
+                </ul>
+                
+                <h3>4. Digital Etiquette</h3>
+                <p>Modern considerations for digital wishes:</p>
+                <ul>
+                    <li>Check if festival has specific timing for greetings</li>
+                    <li>Use appropriate hashtags if sharing on social media</li>
+                    <li>Consider time zones for international contacts</li>
+                    <li>Respect if someone prefers not to celebrate publicly</li>
+                </ul>
+                
+                <h3>5. Common Mistakes to Avoid</h3>
+                <ul>
+                    <li>Mixing symbols from different traditions</li>
+                    <li>Using stereotypes or caricatures</li>
+                    <li>Sending at inappropriate times</li>
+                    <li>Assuming everyone celebrates the same way</li>
+                    <li>Forgetting to learn correct pronunciation of greetings</li>
+                </ul>
+                
+                <p>By being culturally sensitive in your festival wishes, you show respect for diverse traditions and build stronger, more meaningful connections with people from all backgrounds.</p>`
             },
             {
                 id: 6,
-                title: "Creating Custom Wishes with AI: Pros and Cons",
-                excerpt: "Exploring the benefits and limitations of AI-generated wishes and when they're most effective.",
+                title: "Creating Custom Wishes with AI: Complete Guide",
+                excerpt: "Exploring the benefits and best practices for AI-generated wishes and images.",
                 category: "Technology",
-                fullContent: `<h2>Creating Custom Wishes with AI: Pros and Cons</h2>
-                <p>AI wish generators offer exciting possibilities but come with considerations. Here's what you need to know.</p>
-                <h3>1. Advantages of AI-Generated Wishes</h3>
+                type: "article",
+                date: "April 18, 2026",
+                readTime: "7 min read",
+                fullContent: `<h2>Creating Custom Wishes with AI: Complete Guide</h2>
+                <p>Artificial Intelligence has revolutionized how we create and personalize wishes. This guide covers everything you need to know about using AI for perfect wishes every time.</p>
+                
+                <h3>1. How AI Wish Generators Work</h3>
+                <p>Modern AI systems use several technologies:</p>
                 <ul>
-                    <li><strong>Unlimited variations:</strong> Generate unique messages for any occasion</li>
-                    <li><strong>Time-saving:</strong> Create personalized wishes in seconds</li>
-                    <li><strong>Overcoming writer's block:</strong> Get inspiration when you're stuck</li>
-                    <li><strong>Multilingual options:</strong> Create wishes in languages you don't speak</li>
+                    <li><strong>Natural Language Processing (NLP):</strong> Understands context and emotion</li>
+                    <li><strong>Machine Learning:</strong> Learns from millions of existing wishes</li>
+                    <li><strong>Generative AI:</strong> Creates new, unique content</li>
+                    <li><strong>Style Transfer:</strong> Applies specific writing styles</li>
+                    <li><strong>Personalization Algorithms:</strong> Tailors content to recipients</li>
                 </ul>
-                <h3>2. Limitations to Consider</h3>
+                
+                <h3>2. Top AI Tools for Wishes</h3>
+                
+                <h4>For Text Wishes:</h4>
                 <ul>
-                    <li><strong>Lack of personal history:</strong> AI doesn't know your shared memories</li>
-                    <li><strong>Emotional depth:</strong> May lack the nuance of human-crafted messages</li>
-                    <li><strong>Cultural sensitivity:</strong> May not understand specific cultural contexts</li>
-                    <li><strong>Authenticity concerns:</strong> Some recipients may prefer handcrafted messages</li>
+                    <li><strong>ChatGPT:</strong> Versatile, understands context well</li>
+                    <li><strong>Claude:</strong> Excellent for longer, more thoughtful messages</li>
+                    <li><strong>Google Bard:</strong> Great for fact-checked content</li>
+                    <li><strong>Jasper:</strong> Specialized for marketing-style wishes</li>
                 </ul>
-                <h3>3. Best Practices for AI Wishes</h3>
-                <p>Use AI as a starting point, then personalize the output. Add specific memories, inside jokes, or personal references that the AI couldn't know.</p>
-                <h3>4. When to Choose AI</h3>
-                <p>AI works best for casual occasions, when you need many wishes quickly, or as inspiration to build upon. For deeply personal relationships and major milestones, traditional personalization is still preferred.</p>
-                <p>By understanding both the power and limitations of AI, you can leverage this technology effectively while maintaining authentic connections.</p>`
+                
+                <h4>For Image Creation:</h4>
+                <ul>
+                    <li><strong>DALL-E 3:</strong> Creates detailed, realistic images</li>
+                    <li><strong>Midjourney:</strong> Artistic, stylized images</li>
+                    <li><strong>Stable Diffusion:</strong> Open-source, highly customizable</li>
+                    <li><strong>Canva AI:</strong> User-friendly with templates</li>
+                </ul>
+                
+                <h3>3. Effective Prompt Writing</h3>
+                <p>Get better results with specific prompts:</p>
+                
+                <h4>Basic Structure:</h4>
+                <ul>
+                    <li>"Create a [occasion] wish for [recipient]"</li>
+                    <li>"Generate [number] birthday messages for [relationship]"</li>
+                    <li>"Design an image showing [elements] for [occasion]"</li>
+                </ul>
+                
+                <h4>Advanced Prompts:</h4>
+                <ul>
+                    <li>"Write a humorous birthday message for a 30-year-old friend who loves hiking"</li>
+                    <li>"Create a romantic anniversary wish in the style of Shakespeare"</li>
+                    <li>"Generate a Diwali greeting image with traditional motifs in modern style"</li>
+                    <li>"Write a get-well message that's encouraging but not overly optimistic"</li>
+                </ul>
+                
+                <h3>4. Personalization Techniques</h3>
+                <p>Make AI output feel genuinely personal:</p>
+                <ul>
+                    <li><strong>Add Specific Details:</strong> Include names, shared memories, inside jokes</li>
+                    <li><strong>Specify Tone:</strong> Formal, casual, humorous, sentimental</li>
+                    <li><strong>Include References:</strong> Favorite colors, hobbies, recent events</li>
+                    <li><strong>Set Length:</strong> Short and sweet vs. detailed and heartfelt</li>
+                </ul>
+                
+                <h3>5. Ethical Considerations</h3>
+                <p>Use AI responsibly:</p>
+                <ul>
+                    <li>Always review and edit AI-generated content</li>
+                    <li>Add personal touches to make it authentic</li>
+                    <li>Be transparent if using AI (optional)</li>
+                    <li>Respect copyright and avoid plagiarism</li>
+                    <li>Consider cultural sensitivity in generated content</li>
+                </ul>
+                
+                <h3>6. Best Practices</h3>
+                <ul>
+                    <li>Use AI as a starting point, not the final product</li>
+                    <li>Combine multiple AI suggestions for unique results</li>
+                    <li>Test different prompts to find what works best</li>
+                    <li>Save successful prompts for future use</li>
+                    <li>Update your approach as AI technology evolves</li>
+                </ul>
+                
+                <h3>7. Limitations to Consider</h3>
+                <ul>
+                    <li>AI may not understand very specific cultural nuances</li>
+                    <li>Can sometimes produce generic or repetitive content</li>
+                    <li>May struggle with highly emotional or personal topics</li>
+                    <li>Requires human oversight for quality control</li>
+                    <li>May not capture your unique voice without guidance</li>
+                </ul>
+                
+                <p>AI is a powerful tool for creating wishes, but the most meaningful messages always come from the heart. Use AI to enhance your creativity, not replace your personal touch.</p>`
             }
         ];
 
-        // Generate article cards
-        function generateArticleCard(article) {
+        // Generate blog/article cards
+        function generateBlogArticleCard(item) {
+            const typeIcon = item.type === 'blog' ? 'fas fa-blog' : 'fas fa-newspaper';
+            const typeLabel = item.type === 'blog' ? 'Blog Post' : 'SEO Article';
+            
             return `
-                <article class="article-card" data-id="${article.id}">
-                    <div class="article-image">
-                        ${article.category} Article
+                <article class="blog-article-card" data-id="${item.id}">
+                    <div class="blog-article-image">
+                        ${item.category}
                     </div>
-                    <div class="article-content">
-                        <span class="article-category">${article.category}</span>
-                        <h4 class="article-title">${article.title}</h4>
-                        <p class="article-excerpt">${article.excerpt}</p>
-                        <a href="#" class="read-more" data-id="${article.id}">Read More <i class="fas fa-arrow-right"></i></a>
+                    <div class="blog-article-content">
+                        <div class="blog-article-meta">
+                            <span class="blog-article-category">${item.category}</span>
+                            <span><i class="${typeIcon}"></i> ${typeLabel}</span>
+                        </div>
+                        <h4 class="blog-article-title">${item.title}</h4>
+                        <p class="blog-article-excerpt">${item.excerpt}</p>
+                        <div class="blog-article-meta">
+                            <span><i class="far fa-calendar"></i> ${item.date}</span>
+                            <span><i class="far fa-clock"></i> ${item.readTime}</span>
+                        </div>
+                        <a href="#" class="read-more" data-id="${item.id}">Read Full Article <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
             `;
         }
 
-        // Populate articles
-        function populateArticles() {
-            const articlesGrid = document.getElementById('articles-grid');
-            if (articlesGrid) {
-                articlesGrid.innerHTML = articlesData.map(article => generateArticleCard(article)).join('');
+        // Populate blog and articles
+        function populateBlogArticles() {
+            const blogArticlesGrid = document.getElementById('blog-articles-grid');
+            if (blogArticlesGrid) {
+                blogArticlesGrid.innerHTML = blogArticlesData.map(item => generateBlogArticleCard(item)).join('');
             }
         }
 
@@ -2257,22 +2663,36 @@
         const closeModal = document.getElementById('close-modal');
         const modalArticleContent = document.getElementById('modal-article-content');
 
-        function openArticleModal(articleId) {
-            const article = articlesData.find(a => a.id == articleId);
-            if (article) {
+        function openArticleModal(itemId) {
+            const item = blogArticlesData.find(a => a.id == itemId);
+            if (item) {
+                const typeLabel = item.type === 'blog' ? 'Blog Post' : 'SEO Article';
+                
                 modalArticleContent.innerHTML = `
-                    <h1>${article.title}</h1>
+                    <h1>${item.title}</h1>
                     <div style="display: flex; align-items: center; gap: 10px; margin: 1.5rem 0 2rem; color: var(--gray-color);">
-                        <span class="article-category">${article.category}</span>
-                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span class="blog-article-category">${item.category}</span>
+                        <span><i class="${item.type === 'blog' ? 'fas fa-blog' : 'fas fa-newspaper'}"></i> ${typeLabel}</span>
+                        <span><i class="far fa-calendar"></i> ${item.date}</span>
+                        <span><i class="far fa-clock"></i> ${item.readTime}</span>
                     </div>
-                    ${article.fullContent}
+                    ${item.fullContent}
                     <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--light-gray);">
-                        <p style="color: var(--gray-color); font-style: italic;">For more articles and free wish images, explore our complete collection at WishaImage.com</p>
+                        <p style="color: var(--gray-color); font-style: italic;">For more blog posts and articles, explore our complete collection at WishaImage.com</p>
                     </div>
                 `;
                 articleModal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                
+                // Close modal with Escape key
+                const closeModalOnEscape = (e) => {
+                    if (e.key === 'Escape') {
+                        articleModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        document.removeEventListener('keydown', closeModalOnEscape);
+                    }
+                };
+                document.addEventListener('keydown', closeModalOnEscape);
             }
         }
 
@@ -2300,10 +2720,10 @@
             }, 3000);
         }
 
-        // Initialize articles on DOMContentLoaded
+        // Initialize on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Populate articles
-            populateArticles();
+            // Populate blog articles
+            populateBlogArticles();
             
             // Mobile Menu Toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -2328,7 +2748,7 @@
                 });
             });
             
-            // FAQ Accordion with enhanced animation
+            // FAQ Accordion
             document.querySelectorAll('.faq-question').forEach(question => {
                 question.addEventListener('click', () => {
                     const answer = question.nextElementSibling;
@@ -2363,7 +2783,6 @@
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
                         
-                        // Add animation class based on element type
                         if (entry.target.classList.contains('image-card')) {
                             entry.target.style.animation = 'cardAppear 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
                         }
@@ -2372,7 +2791,7 @@
             }, observerOptions);
             
             // Observe elements for animation
-            document.querySelectorAll('.image-card, .blog-card, .adsense-unit, .category-card, .article-card').forEach(el => {
+            document.querySelectorAll('.image-card, .blog-article-card, .adsense-unit, .category-card').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
                 el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
@@ -2382,39 +2801,26 @@
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#' || href === '#!') return;
+                    
                     e.preventDefault();
                     
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
+                    const targetElement = document.querySelector(href);
                     if (targetElement) {
+                        // Close mobile menu if open
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                            mobileMenuBtn.style.transform = 'rotate(0)';
+                        }
+                        
                         window.scrollTo({
                             top: targetElement.offsetTop - 80,
                             behavior: 'smooth'
                         });
                     }
                 });
-            });
-            
-            // Newsletter Form Submission
-            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input[type="email"]').value;
-                
-                // Show success animation
-                const submitBtn = this.querySelector('button');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
-                submitBtn.style.backgroundColor = '#10b981';
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.backgroundColor = '';
-                    showToast(`Thank you for subscribing with ${email}! You'll receive our weekly updates soon.`);
-                }, 2000);
-                
-                this.reset();
             });
             
             // Page Load Animation
@@ -2431,14 +2837,14 @@
                 const particlesContainer = document.getElementById('particles');
                 const colors = ['rgba(79, 70, 229, 0.1)', 'rgba(251, 191, 36, 0.1)', 'rgba(236, 72, 153, 0.1)'];
                 
-                for (let i = 0; i < 20; i++) {
+                for (let i = 0; i < 15; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('particle');
                     
                     // Random properties
-                    const size = Math.random() * 60 + 20;
+                    const size = Math.random() * 40 + 15;
                     const left = Math.random() * 100;
-                    const animationDuration = Math.random() * 30 + 20;
+                    const animationDuration = Math.random() * 25 + 15;
                     const animationDelay = Math.random() * 5;
                     const color = colors[Math.floor(Math.random() * colors.length)];
                     
@@ -2513,7 +2919,7 @@
                 }
             });
             
-            // Simulate Ad Loading with fade in
+            // Simulate Ad Loading
             setTimeout(() => {
                 document.querySelectorAll('.ad-placeholder').forEach(ad => {
                     ad.innerHTML = '<p>Advertisement loaded</p><small>Thank you for supporting our free service</small>';
@@ -2534,6 +2940,27 @@
             }, observerOptions);
             
             sectionTitles.forEach(title => titleObserver.observe(title));
+            
+            // Handle window resize for mobile menu
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    // On larger screens, ensure menu is visible
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    mobileMenuBtn.style.transform = 'rotate(0)';
+                }
+            });
+            
+            // Initialize tooltips for better mobile UX
+            document.querySelectorAll('[title]').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    // Add visual feedback for touch
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
         });
     </script>
 </body>
