@@ -75,6 +75,7 @@
             color: var(--dark-color);
             line-height: 1.6;
             overflow-x: hidden;
+            padding-top: 70px; /* Added for fixed header */
         }
         
         h1, h2, h3, h4 {
@@ -83,13 +84,15 @@
             line-height: 1.3;
         }
         
-        /* Header & Navigation */
+        /* Header & Navigation - CHANGED TO FIXED */
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             padding: 1rem 0;
-            position: sticky;
+            position: fixed; /* Changed from sticky to fixed */
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             animation: headerSlideDown 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -127,6 +130,14 @@
             align-items: center;
             gap: 10px;
             animation: logoPulse 2s infinite;
+            text-decoration: none; /* Added for link */
+            color: white; /* Added for link */
+        }
+        
+        /* Logo hover effect */
+        .logo:hover {
+            color: var(--secondary-color);
+            transition: var(--transition);
         }
         
         @keyframes logoPulse {
@@ -1314,7 +1325,7 @@
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 70px; /* Adjusted for fixed header */
                 left: 0;
                 width: 100%;
                 background-color: rgba(55, 48, 163, 0.98);
@@ -1455,6 +1466,14 @@
         }
         
         @media (max-width: 576px) {
+            body {
+                padding-top: 60px; /* Adjusted for smaller header on mobile */
+            }
+            
+            header {
+                padding: 0.8rem 0; /* Reduced padding for mobile */
+            }
+            
             .container {
                 padding: 0 20px;
             }
@@ -1571,6 +1590,10 @@
         }
         
         @media (max-width: 375px) {
+            body {
+                padding-top: 55px; /* Further adjustment for very small screens */
+            }
+            
             .hero h1 {
                 font-size: 1.6rem;
             }
@@ -1693,6 +1716,12 @@
                 align-items: center;
                 justify-content: center;
             }
+            
+            .logo {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
         }
         
         /* Prevent horizontal scrolling */
@@ -1704,6 +1733,17 @@
         /* Smooth scrolling for anchor links */
         html {
             scroll-behavior: smooth;
+        }
+        
+        /* Fix for anchor links with fixed header */
+        section {
+            scroll-margin-top: 80px; /* Adjust based on header height */
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                scroll-margin-top: 60px; /* Smaller margin for mobile */
+            }
         }
     </style>
 </head>
@@ -1735,13 +1775,13 @@
     <!-- Floating Background Particles -->
     <div class="floating-particles" id="particles"></div>
     
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-gift"></i>
-                WishaImage
-            </div>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <i class="fas fa-tools"></i> WishaImage
+      </a>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -2740,7 +2780,7 @@
             });
             
             // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
+            document.querySelectorAll('.nav-links a, .logo').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
@@ -2798,16 +2838,19 @@
                 observer.observe(el);
             });
             
-            // Smooth scrolling for anchor links
+            // Smooth scrolling for anchor links (including logo)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
+                    
+                    // Skip empty or invalid hashes
                     if (href === '#' || href === '#!') return;
                     
-                    e.preventDefault();
-                    
+                    // Get target element
                     const targetElement = document.querySelector(href);
                     if (targetElement) {
+                        e.preventDefault();
+                        
                         // Close mobile menu if open
                         if (navLinks.classList.contains('active')) {
                             navLinks.classList.remove('active');
@@ -2815,8 +2858,13 @@
                             mobileMenuBtn.style.transform = 'rotate(0)';
                         }
                         
+                        // Calculate the offset considering the fixed header
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        // Smooth scroll to target
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: targetPosition,
                             behavior: 'smooth'
                         });
                     }
