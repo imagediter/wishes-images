@@ -89,7 +89,7 @@
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             padding: 1rem 0;
-            position: fixed; /* Changed from sticky to fixed */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -130,8 +130,10 @@
             align-items: center;
             gap: 10px;
             animation: logoPulse 2s infinite;
-            text-decoration: none; /* Added for link */
-            color: white; /* Added for link */
+            text-decoration: none;
+            color: white;
+            z-index: 1001;
+            position: relative;
         }
         
         /* Logo hover effect */
@@ -198,11 +200,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: var(--transition);
+            z-index: 1001;
         }
         
         .mobile-menu-btn:hover {
             color: var(--secondary-color);
-            transform: rotate(90deg);
         }
         
         /* Hero Section */
@@ -1278,7 +1280,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
         
-        /* Mobile Responsive Styles */
+        /* Mobile Responsive Styles - FIXED */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 30px;
@@ -1325,8 +1327,9 @@
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
-                top: 70px; /* Adjusted for fixed header */
+                top: 70px;
                 left: 0;
+                right: 0;
                 width: 100%;
                 background-color: rgba(55, 48, 163, 0.98);
                 backdrop-filter: blur(10px);
@@ -1335,6 +1338,7 @@
                 gap: 1.5rem;
                 transform: translateY(-100%);
                 opacity: 0;
+                visibility: hidden;
                 transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
                 z-index: 999;
@@ -1343,11 +1347,11 @@
             .nav-links.active {
                 transform: translateY(0);
                 opacity: 1;
+                visibility: visible;
             }
             
             .mobile-menu-btn {
                 display: block;
-                z-index: 1000;
             }
             
             .hero {
@@ -1467,11 +1471,11 @@
         
         @media (max-width: 576px) {
             body {
-                padding-top: 60px; /* Adjusted for smaller header on mobile */
+                padding-top: 60px;
             }
             
             header {
-                padding: 0.8rem 0; /* Reduced padding for mobile */
+                padding: 0.8rem 0;
             }
             
             .container {
@@ -1591,7 +1595,7 @@
         
         @media (max-width: 375px) {
             body {
-                padding-top: 55px; /* Further adjustment for very small screens */
+                padding-top: 55px;
             }
             
             .hero h1 {
@@ -1737,12 +1741,19 @@
         
         /* Fix for anchor links with fixed header */
         section {
-            scroll-margin-top: 80px; /* Adjust based on header height */
+            scroll-margin-top: 80px;
         }
         
         @media (max-width: 576px) {
             section {
-                scroll-margin-top: 60px; /* Smaller margin for mobile */
+                scroll-margin-top: 60px;
+            }
+        }
+        
+        /* Fix for iOS smooth scrolling issues */
+        @media (max-width: 768px) {
+            html {
+                -webkit-overflow-scrolling: touch;
             }
         }
     </style>
@@ -2207,7 +2218,6 @@
     <script>
         // Combined Blog Posts and Articles Data
         const blogArticlesData = [
-            // Blog Posts
             {
                 id: 1,
                 title: "How to Create Beautiful Wishes Images in 2026",
@@ -2419,7 +2429,6 @@
                 
                 <p>These trends represent the cutting edge of wishes image design in 2026. By incorporating these elements, you can create wishes that feel fresh, modern, and deeply engaging.</p>`
             },
-            // SEO Articles
             {
                 id: 4,
                 title: "How to Choose the Perfect Birthday Wish Image",
@@ -2744,7 +2753,6 @@
         function showToast(message, type = 'success') {
             toastMessage.textContent = message;
             
-            // Set color based on type
             if (type === 'warning') {
                 toast.style.background = '#fbbf24';
             } else if (type === 'error') {
@@ -2755,10 +2763,23 @@
             
             toast.style.display = 'flex';
             
-            // Hide after 3 seconds
             setTimeout(() => {
                 toast.style.display = 'none';
             }, 3000);
+        }
+
+        // Smooth scroll function that works on both desktop and mobile
+        function smoothScrollTo(targetId) {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // Initialize on DOMContentLoaded
@@ -2766,26 +2787,47 @@
             // Populate blog articles
             populateBlogArticles();
             
-            // Mobile Menu Toggle
+            // Mobile Menu Toggle - FIXED FOR MOBILE
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navLinks = document.getElementById('navLinks');
             
-            mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 navLinks.classList.toggle('active');
-                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-                mobileMenuBtn.style.transform = navLinks.classList.contains('active') 
-                    ? 'rotate(180deg)' 
-                    : 'rotate(0)';
+                const isActive = navLinks.classList.contains('active');
+                mobileMenuBtn.innerHTML = isActive ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
             });
             
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-links a, .logo').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    mobileMenuBtn.style.transform = 'rotate(0)';
+            // Close mobile menu when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                    if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+            
+            // Handle all anchor link clicks (including logo)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#' || href === '#!') return;
+                    
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        // Close mobile menu if open
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                        
+                        // Smooth scroll to target
+                        smoothScrollTo(href);
+                    }
                 });
             });
             
@@ -2837,39 +2879,6 @@
                 el.style.transform = 'translateY(30px)';
                 el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
                 observer.observe(el);
-            });
-            
-            // Smooth scrolling for anchor links (including logo)
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    
-                    // Skip empty or invalid hashes
-                    if (href === '#' || href === '#!') return;
-                    
-                    // Get target element
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        e.preventDefault();
-                        
-                        // Close mobile menu if open
-                        if (navLinks.classList.contains('active')) {
-                            navLinks.classList.remove('active');
-                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                            mobileMenuBtn.style.transform = 'rotate(0)';
-                        }
-                        
-                        // Calculate the offset considering the fixed header
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        // Smooth scroll to target
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
             });
             
             // Page Load Animation
@@ -2996,20 +3005,17 @@
                     // On larger screens, ensure menu is visible
                     navLinks.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    mobileMenuBtn.style.transform = 'rotate(0)';
                 }
             });
             
-            // Initialize tooltips for better mobile UX
-            document.querySelectorAll('[title]').forEach(element => {
-                element.addEventListener('touchstart', function() {
-                    // Add visual feedback for touch
-                    this.style.transform = 'scale(0.98)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 200);
-                });
-            });
+            // Fix for mobile viewport height
+            function setViewportHeight() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            
+            setViewportHeight();
+            window.addEventListener('resize', setViewportHeight);
         });
     </script>
 </body>
